@@ -1,20 +1,36 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const LockContext = createContext();
 
-export function LockProvider({ children }) {
-  const numValues = 21;
-  const numSlots = 3;
-  
-  const [combination, setCombination] = useState(Array.from({length: numSlots}, () => Math.floor(Math.random() * numValues)));
+export const LockProvider = ({lockCombination, combination, setCombination, numValues, numSlots, isLocked, setIsLocked, children }) => {
 
   const changeSlotValue = (slotColumn, slotValue) => {
-    combination[slotColumn] = slotValue;
+    combination.splice(slotColumn, 1, slotValue);
     console.log(combination);
   };
   
+  const unlock = () => {
+    console.log(`actual ${lockCombination}`);
+    console.log(`ui ${combination}`);
+    for(let i = 0; i < numSlots; i++) {
+      if(combination[i] != lockCombination[i]) {
+	setIsLocked(true);
+	break;
+      }
+      if(i === numSlots - 1 && combination[i] === lockCombination[i]) {
+	setIsLocked(false);
+      }
+    }
+    return () => console.log(isLocked);
+  }
+  
   return (
-      <LockContext.Provider value = {{ numValues, numSlots, combination, changeSlotValue }}>{children}</LockContext.Provider>
+      <>
+      {isLocked ?  (
+      <LockContext.Provider value = {{ numValues, numSlots, combination, changeSlotValue, unlock }}>{children}
+	</LockContext.Provider>) :
+       <h1>unlocked</h1>}
+      </>
   );
 }
 

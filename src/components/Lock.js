@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+
 import LockContext from '../contexts/LockContext';
+import UnlockButton from '../components/UnlockButton';
 import Slot from './Slot';
 
 const Lock = () => {
@@ -11,8 +12,9 @@ const Lock = () => {
   }
   
   return (
-  <React.Fragment>
+  <>
     {slots}
-  </React.Fragment>);
+    <UnlockButton/>
+  </>);
 }
 export default Lock;
