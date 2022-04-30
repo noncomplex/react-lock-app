@@ -12,9 +12,15 @@ const Lock = () => {
   }
   
   return (
-  <>
-    {slots}
-    <UnlockButton/>
-  </>);
+    <>
+      <div className="UnlockSeparator">
+	<div className="Lock">
+	  {slots}
+	</div>
+	<div className="UnlockFlex">
+	  <UnlockButton/>
+	</div> 
+      </div>
+    </>);
 }
 export default Lock;

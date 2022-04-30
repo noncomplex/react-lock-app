@@ -23,13 +23,19 @@ function App() {
 		    setCombination={setCombination}
 		    isLocked={isLocked}
 		    setIsLocked={setIsLocked}>
-	<Lock />
-	<QuestionOne />
-	<QuestionTwo />
+	<div className="Lock">
+	  <Lock />
+	</div>
+	
+	<div className="LockProvider">
+	  <QuestionOne />
+	  <QuestionTwo />
+	</div>
+	
       </LockProvider>
-														  
-    </div>
+      </div>													  
   );
 }
 
 export default App;
+

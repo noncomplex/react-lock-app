@@ -28,11 +28,11 @@ const Slot = (props) => {
   }
   
   return (
-    <>
+    <div className="Slot">
       <button onClick={increment}>⬆️</button>
-      <h1>{slotValue}</h1>
+      <div className="SlotValue">{slotValue}</div>
       <button onClick={decrement}>⬇️</button>
-    </>
+    </div>
   );
 }
 
